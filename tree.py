@@ -81,8 +81,7 @@ class Tree():
 
     def post_order_stack(self, root):  # 堆栈实现后序遍历（非递归）
         # 先遍历根节点，再遍历右子树，最后是左子树，这样就可以转化为和先序遍历一个类型了，最后只把遍历结果逆序输出就OK了。
-        if not root:
-            return
+        if not root: return
         myStack1 = []
         myStack2 = []
         node = root
@@ -95,6 +94,19 @@ class Tree():
             node = node.left
         while myStack2:
             print myStack2.pop().data,
+
+    def postOrderTraverse(self, node):
+        stack = [node]
+        stack2 = []
+        while stack:
+            node = stack.pop()
+            stack2.append(node)
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
+        while stack2:
+            print stack2.pop().data,
 
     def level_order_queue(self, root):  # 队列实现层次遍历（非递归）
         if not root:
@@ -113,7 +125,7 @@ class Tree():
 
 if __name__ == '__main__':
     # 主函数
-    datas = [2, 3, 4, 5, 6, 7, 8, 9]
+    datas = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     tree = Tree()  # 新建一个树对象
     for data in datas:
         tree.add(data)  # 逐个加入树的节点
@@ -135,6 +147,9 @@ if __name__ == '__main__':
 
     print '\n堆栈实现后序遍历：'
     tree.post_order_stack(tree.root)
+
+    print '\n堆栈实现后序遍历2：'
+    tree.postOrderTraverse(tree.root)
 
     print '\n\n队列实现层次遍历：'
     tree.level_order_queue(tree.root)

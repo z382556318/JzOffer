@@ -24,7 +24,7 @@ class Solution:
         left = self.FindPath(root.left, expectNumber - root.val)
         right = self.FindPath(root.right, expectNumber - root.val)
         for i in left + right:
-            # 列表的拼接
+            # 列表的拼接: [1,2] + [3] = [1, 2, 3] -->创建了新的列表（地址不同）
             res.append([root.val] + i)
         return res
 
